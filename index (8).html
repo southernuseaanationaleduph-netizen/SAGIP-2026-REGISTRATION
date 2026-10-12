@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SAGIP Seminar</title>
+<style>
+:root{--g1:#062b20;--g2:#0b3d2e;--g3:#1fa05a;--g4:#7be0a8;--f:clamp(34px,5.4vh,62px)}
+*{box-sizing:border-box;margin:0;padding:0}[hidden]{display:none!important}
+body{font-family:'Segoe UI',Poppins,Arial,sans-serif;height:100vh;overflow:hidden;color:#fff;display:flex;background:radial-gradient(1200px 700px at 75% -10%,#13704d,var(--g1) 62%)}
+aside{width:240px;background:linear-gradient(#082f23,#05221a);border-right:1px solid #1fa05a55;padding:22px 18px;display:flex;flex-direction:column;gap:6px}
+.logo{font-size:11px;letter-spacing:3px;color:var(--g4)}.ttl{font-size:26px;font-weight:800;letter-spacing:2px;line-height:1.1;margin:4px 0}.sub{font-size:11px;color:#a9d9bf;letter-spacing:1px;margin-bottom:18px;border-bottom:2px solid var(--g3);padding-bottom:14px}
+aside a{color:#cfeedd;text-decoration:none;padding:11px 12px;border-radius:8px;font-size:13px;letter-spacing:1.5px;font-weight:600}
+aside a.on{background:linear-gradient(90deg,var(--g3),#168a4d);color:#fff}aside a:hover{background:#1fa05a33}
+.stat{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px}.stat div{background:#ffffff0f;border-radius:8px;padding:10px;text-align:center}.stat b{display:block;font-size:24px;color:var(--g4)}.stat span{font-size:9px;letter-spacing:1.5px;color:#a9d9bf}
+#clock{font:700 20px 'Courier New',monospace;text-align:center;margin-top:10px;color:#fff}#dot{font-size:10px;text-align:center;letter-spacing:1px;color:#ff8c8c}#dot.ok{color:var(--g4)}
+.dbs{font-size:10px;text-align:center;letter-spacing:1px;color:#a9d9bf;margin-top:4px}#big{text-align:center;margin-bottom:14px}.bigf{width:clamp(120px,22vh,200px);height:clamp(120px,22vh,200px);margin:0 auto 8px;animation:pop .5s}.bigf .face{font-size:48px;border-width:3px}.bn{font-size:20px;font-weight:800}.bs{font-size:10px;letter-spacing:2px;color:var(--g4);margin-top:3px}
+#rst{margin-top:8px;background:none;border:1px solid #ffffff33;color:#ffffff88;font-size:9px;letter-spacing:1px;padding:6px;border-radius:6px;cursor:pointer}
+main{flex:1;min-width:0;position:relative}section{position:absolute;inset:0;padding:22px 30px;display:none;flex-direction:column}section.on{display:flex}
+h1{font-size:13px;letter-spacing:4px;color:var(--g4);font-weight:600}h2{font-size:30px;font-weight:800;margin:2px 0 10px}
+.face{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:linear-gradient(#1fa05a,#0b6b44);display:grid;place-items:center;border:2px solid var(--g4);font-weight:700;font-size:calc(var(--f)*.34)}
+.face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* registration */
+.ctr{margin:auto;text-align:center;max-width:760px;width:100%}
+.card{background:#ffffff12;border:1px solid #7be0a855;border-radius:18px;padding:30px;backdrop-filter:blur(6px)}
+.pulse{width:110px;height:110px;margin:0 auto 18px;border-radius:50%;background:var(--g3);display:grid;place-items:center;font-size:48px;animation:pl 2s infinite}
+@keyframes pl{0%{box-shadow:0 0 0 0 #1fa05a99}100%{box-shadow:0 0 0 38px #1fa05a00}}
+.big{font-size:34px;font-weight:800}.mut{color:#a9d9bf;margin-top:6px;font-size:15px}
+.btn{background:linear-gradient(90deg,var(--g3),#168a4d);border:0;color:#fff;font-weight:700;letter-spacing:2px;padding:15px 34px;border-radius:12px;font-size:14px;cursor:pointer;margin-top:18px}.btn:disabled{opacity:.35;cursor:not-allowed}.btn.alt{background:none;border:1px solid #ffffff44;font-size:11px;padding:9px 18px}
+.okrow{display:flex;align-items:center;gap:20px;justify-content:center;margin-bottom:16px;text-align:left}.okrow .pf{width:120px;height:120px}.tick{color:var(--g4);font-size:13px;letter-spacing:3px;font-weight:700}
+.pk{display:flex;gap:34px;justify-content:center;margin-top:14px}.pk h3{font-size:10px;letter-spacing:3px;color:var(--g4);margin-bottom:8px}.pg{display:grid;grid-template-columns:repeat(5,54px);gap:8px}
+.pg button{height:54px;border-radius:12px;border:1.5px solid var(--g4);background:#ffffff10;color:#fff;font-size:18px;font-weight:700;cursor:pointer;transition:.15s}.pg button:hover:not(:disabled){background:#1fa05a66}.pg button.on{background:var(--g3);transform:scale(1.1);box-shadow:0 0 18px #1fa05a}.pg button:disabled{opacity:.25;cursor:not-allowed;border-style:dashed}
+#rd{width:100%;max-width:420px;margin:0 auto;overflow:hidden}#rd video{width:100%!important;transform:scale(.5);transform-origin:center}
+body.sc aside,body.nb aside{display:none}#tg{display:none;position:fixed;top:12px;left:12px;z-index:30;padding:9px 14px;border-radius:8px;border:1px solid #7be0a8;background:#062b20ee;color:#7be0a8;font-size:12px;font-weight:700;letter-spacing:1.5px;cursor:pointer}body.nb #tg{display:block}body.sc #tg{display:none!important}#tg2{background:none;border:1px solid #ffffff33;color:#cfeedd;font-size:10px;letter-spacing:2px;padding:8px;border-radius:6px;cursor:pointer;margin-bottom:10px}#tg2:hover{background:#ffffff14}#sc-status{margin:12px 0;font-size:12px;min-height:16px}
+#toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:#fff;color:var(--g2);padding:12px 24px;border-radius:30px;font-weight:700;box-shadow:0 8px 30px #0008;z-index:9}
+/* seating */
+.stage{align-self:center;width:46%;text-align:center;padding:8px;border-radius:0 0 40px 40px;background:linear-gradient(var(--g3),#0e7a46);font-size:11px;letter-spacing:6px;font-weight:700;margin-bottom:12px}
+.plan{flex:1;min-height:0;display:grid;grid-template-columns:1fr 250px 1fr;gap:26px}.col{display:grid;grid-template-rows:repeat(10,1fr);gap:8px;min-height:0}
+.seat{display:flex;align-items:center;gap:12px;padding:0 12px;border-radius:12px;background:#ffffff0d;border:1.5px dashed #7be0a844;transition:.3s;min-height:0}.seat.t{background:#1fa05a2e;border:1.5px solid var(--g4)}
+.seat b{width:30px;font-size:20px;color:var(--g4);text-align:center}.slot{width:var(--f);height:var(--f);flex:none;border-radius:50%;border:2px dashed #7be0a855}.seat.t .slot{border:0}
+.seat small{font-size:13px;color:#ffffff66;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.seat.t small{color:#fff}
+.tray{background:#ffffff0d;border:1px solid #7be0a833;border-radius:16px;padding:14px;overflow:auto}.tray h3{font-size:10px;letter-spacing:3px;color:var(--g4);text-align:center;margin-bottom:10px}
+.chip{display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:6px;background:#1fa05a33;border-radius:40px;animation:pop .5s}.chip .cf{width:var(--f);height:var(--f);flex:none}.chip span{font-size:13px;font-weight:600}
+@keyframes pop{from{transform:scale(.3);opacity:0}}.fly{position:fixed;z-index:20;transform-origin:0 0;pointer-events:none}
+</style></head><body>
+<button id="tg" title="Show menu (H)">☰ MENU</button>
+<aside>
+ <button id="tg2" title="Hide menu (H)">◀ HIDE MENU</button>
+ <div class="logo">● SEMINAR</div><div class="ttl">SAGIP</div><div class="sub">STI · HIV AWARENESS</div>
+ <a href="#register" id="n-register">REGISTRATION</a><a href="#seating" id="n-seating">SEATING PLAN</a><a href="#scanner" id="n-scanner">SCANNER (PHONE)</a>
+ <div class="stat"><div><b id="c-in">0</b><span>CHECKED IN</span></div><div><b id="c-seat">0</b><span>SEATED / 20</span></div></div>
+ <div id="clock"></div><div id="dot">● CONNECTING…</div><div id="dbs" class="dbs">● DATABASE…</div><button id="rst">RESET ALL</button>
+</aside>
+<main>
+<section id="register">
+ <h1>WELCOME TO</h1><h2>SAGIP Seminar Registration</h2>
+  <div class="ctr" id="r-idle"><div class="card"><div class="pulse">▣</div><div class="big">Please present your QR code</div><div class="mut">Scan your pass at the scanner station</div></div></div>
+ <div class="ctr" id="r-pick" hidden><div class="card">
+  <div class="okrow"><div class="pf" id="p-face"></div><div><div class="tick">✔ SUCCESSFULLY REGISTERED</div><div class="big" id="p-name"></div><div class="mut">Choose a seat number</div></div></div>
+  <div class="pk"><div><h3>LEFT SIDE</h3><div class="pg" id="g-l"></div></div><div><h3>RIGHT SIDE</h3><div class="pg" id="g-r"></div></div></div>
+  <button class="btn" id="b-ok" disabled>CONFIRM SEAT</button> <button class="btn alt" id="b-cancel">CANCEL</button><div class="mut" id="qn"></div></div></div>
+ <div class="ctr" id="r-done" hidden><div class="card"><div class="pulse">✔</div><div class="big" id="d-msg"></div><div class="mut">Please proceed to your seat. Thank you!</div></div></div>
+</section>
+<section id="seating">
+ <h1>SAGIP SEMINAR</h1><h2>Seating Plan</h2><div class="stage">STAGE</div>
+ <div class="plan"><div class="col" id="s-l"></div><div class="tray"><h3>ARRIVALS · CHOOSING A SEAT</h3><div id="big"></div><div id="tray"></div></div><div class="col" id="s-r"></div></div>
+</section>
+<section id="scanner">
+ <h1>SAGIP SEMINAR</h1><h2>QR Scanner</h2>
+ <div class="ctr"><div class="card">
+  <div id="sc-start"><div class="pulse">▶</div><div class="mut" id="sc-msg">Tap to start the camera</div><button class="btn" id="b-sc">START SCANNER</button></div>
+  <div id="sc-live" hidden><div id="rd"></div><div class="bs" id="sc-status">READY — POINT AT A QR CODE</div><button class="btn alt" id="b-flip">🔄 FLIP CAMERA</button></div>
+  <div class="bs" id="sc-conn" style="margin-top:14px">● CONNECTING…</div>
+ </div></div>
+</section>
+</main>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="https://unpkg.com/mqtt@5.3.4/dist/mqtt.min.js"></script>
+<script>
+// ===== PASTE your Google Apps Script Web App URL here (ends with /exec) =====
+const APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbwRgnBhCDU5565t2w8l6v1cvT-vxxZTeNp26QmgtC4_e2sXSAnMwTTTcESyeqlhfaQg/exec";
+const DB={}; // student number -> {name, photo}
+const ROOT='sagip-seminar-26-k7x2q/s/',SCAN='sagip-seminar-26-k7x2q/scan',ACK='sagip-seminar-26-k7x2q/ack', BROKER='wss://broker.hivemq.com:8884/mqtt';
+const $=id=>document.getElementById(id),pad=n=>String(n).padStart(2,'0'),pad3=n=>String(n).padStart(3,'0');
+const nm=n=>(DB[n]&&DB[n].name)||'Student '+pad3(n);
+const ini=n=>{const t=nm(n);return /^Student/.test(t)?String(n):t.split(' ').map(w=>w[0]).slice(0,2).join('')};
+const face=n=>`<div class="face"><span>${ini(n)}</span>${DB[n]&&DB[n].photo?`<img src="${DB[n].photo}" alt="">`:''}</div>`;
+const st={};let latest=null,cur=null,q=[],sel=0,lastScan={n:0,t:0},sc=null,ac=null;
+// ---- routing / clock ----
+function route(){const h=location.hash.slice(1),v=['seating','scanner'].includes(h)?h:'register';['register','seating','scanner'].forEach(x=>{$(x).classList.toggle('on',x===v);$('n-'+x).classList.toggle('on',x===v)});document.body.classList.toggle('sc',v==='scanner')}
+addEventListener('hashchange',route);route();
+setInterval(()=>$('clock').textContent=new Date().toLocaleTimeString('en-GB'),1000);
+// ---- build seats ----
+for(let i=1;i<=20;i++){
+ $(i<=10?'s-l':'s-r').insertAdjacentHTML('beforeend',`<div class="seat" id="seat-${i}"><b>${i}</b><div class="slot"></div><small>Available</small></div>`);
+ $(i<=10?'g-l':'g-r').insertAdjacentHTML('beforeend',`<button data-s="${i}">${i}</button>`);
+}
+document.querySelectorAll('.pg button').forEach(b=>b.onclick=()=>{sel=+b.dataset.s;drawPicker()});
+const takenBy=s=>Object.keys(st).find(k=>st[k].s==='seat'&&st[k].seat===s);
+// ---- realtime (MQTT, retained state per student) ----
+const mc=mqtt.connect(BROKER,{clientId:'sg-'+Math.random().toString(36).slice(2,9),reconnectPeriod:2000});
+mc.on('connect',()=>{$('dot').textContent='● LIVE';$('dot').className='ok';$('sc-conn').textContent='● CONNECTED';mc.subscribe([ROOT+'#',SCAN,ACK],{qos:1})});
+mc.on('close',()=>{$('dot').textContent='● OFFLINE';$('dot').className='';$('sc-conn').textContent='● OFFLINE'});
+mc.on('message',(t,p)=>{const s=p.toString();
+ if(t===SCAN){if($('register').classList.contains('on'))try{onScan(JSON.parse(s).code)}catch(e){}return}
+ if(t===ACK){try{showAck(JSON.parse(s))}catch(e){}return}
+ const n=+t.slice(ROOT.length),old=st[n];if(!n)return;if(s)st[n]=JSON.parse(s);else delete st[n];seatingUpdate(n,old);drawPicker();cnt()});
+const put=(n,o)=>mc.publish(ROOT+n,o?JSON.stringify(o):'',{qos:1,retain:true});
+function cnt(){const v=Object.values(st);$('c-in').textContent=v.length;$('c-seat').textContent=v.filter(o=>o.s==='seat').length}
+$('rst').onclick=()=>{if(confirm('Reset ALL registrations and seats?'))for(let i=1;i<=20;i++)put(i,null)};
+// ---- seating plan ----
+function seatingUpdate(n,old){
+ const chip=$('chip'+n),c=st[n];let from=null;
+ if(old&&old.s==='seat'&&(!c||c.seat!==old.seat)){const s=$('seat-'+old.seat);s.classList.remove('t');s.querySelector('.slot').innerHTML='';s.querySelector('small').textContent='Available'}
+ if(c&&c.s==='in'){if(!chip){$('tray').insertAdjacentHTML('beforeend',`<div class="chip" id="chip${n}"><div class="cf">${face(n)}</div><span>${nm(n)}</span></div>`);latest=n;drawBig()}}
+ else if(chip){const bf=document.querySelector('#big .bigf');from=(latest===n&&bf?bf:chip.querySelector('.cf')).getBoundingClientRect();chip.remove();if(latest===n){const cs=document.querySelectorAll('.chip');latest=cs.length?+cs[cs.length-1].id.slice(4):null}drawBig()}
+ if(c&&c.s==='seat'){
+  const s=$('seat-'+c.seat),sl=s.querySelector('.slot');s.classList.add('t');sl.innerHTML=face(n);s.querySelector('small').textContent=nm(n);
+  if(from&&from.width){const to=sl.getBoundingClientRect(),f=document.createElement('div');f.className='fly';f.innerHTML=face(n);
+   Object.assign(f.style,{left:from.left+'px',top:from.top+'px',width:from.width+'px',height:from.height+'px'});sl.style.opacity=0;document.body.append(f);
+   f.animate([{transform:'none'},{transform:`translate(${to.left-from.left}px,${to.top-from.top}px) scale(${to.width/from.width})`}],{duration:900,easing:'cubic-bezier(.3,.7,.2,1)',fill:'forwards'}).onfinish=()=>{f.remove();sl.style.opacity=1}}
+ }
+}
+function drawBig(){$('big').innerHTML=latest?`<div class="bigf">${face(latest)}</div><div class="bn">${nm(latest)}</div><div class="bs">WELCOME · CHOOSING A SEAT…</div>`:''}
+function refreshAll(){$('tray').innerHTML='';latest=null;for(let i=1;i<=20;i++){const e=$('seat-'+i);e.classList.remove('t');e.querySelector('.slot').innerHTML='';e.querySelector('small').textContent='Available'}Object.keys(st).forEach(k=>seatingUpdate(+k,undefined));drawBig()}
+// ---- database (Google Sheet via Apps Script) ----
+const ack=(n,msg)=>mc.publish(ACK,JSON.stringify({n,msg}));
+const hasDB=()=>APPS_SCRIPT_URL.startsWith('http');
+async function loadDB(){
+ if(!hasDB()){$('dbs').textContent='● DEMO MODE (no database)';return}
+ try{const r=await fetch(APPS_SCRIPT_URL+'?action=all');(await r.json()).forEach(x=>{const m=/(\d+)$/.exec(x.id);if(m)DB[+m[1]]=x});
+  $('dbs').textContent='● DATABASE: '+Object.keys(DB).length+' students';refreshAll()}
+ catch(e){$('dbs').textContent='● DATABASE ERROR';setTimeout(loadDB,4000)}}
+if(location.hash!=='#scanner')loadDB();
+// ---- registration flow ----
+const panels=['r-idle','r-pick','r-done'],show=x=>panels.forEach(p=>$(p).hidden=p!==x);
+function toast(m){const t=document.createElement('div');t.id='toast';t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),3000)}
+function beep(){try{ac=ac||new AudioContext();[[1200,0],[1600,.15]].forEach(([f,d])=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f;o.connect(g);g.connect(ac.destination);g.gain.setValueAtTime(.3,ac.currentTime+d);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+d+.13);o.start(ac.currentTime+d);o.stop(ac.currentTime+d+.15)})}catch(e){}}
+function onScan(txt){const m=/^(?:SAGIP-)?(\d{1,3})$/.exec((txt||'').trim());if(!m)return;const n=+m[1],now=Date.now();if(n<1||n>20||(lastScan.n===n&&now-lastScan.t<4000))return;if(hasDB()&&!DB[n]){ack(n,'✖ '+pad3(n)+' not found in database');return toast('QR not found in the database')}lastScan={n,t:now};beep();intake(n)}
+function intake(n){
+ if(st[n]&&st[n].s==='seat'){ack(n,'ℹ '+nm(n)+' already registered — Seat '+st[n].seat);return toast(nm(n)+' is already registered — Seat '+st[n].seat)}
+ if(cur===n||q.includes(n))return;
+ if(cur){q.push(n);ack(n,'⏳ '+nm(n)+' is in line');return drawPicker()}
+ begin(n)}
+function begin(n){ack(n,'✔ '+nm(n)+' registered — choose a seat on the screen');cur=n;sel=0;if(!st[n])put(n,{s:'in'});$('p-face').innerHTML=face(n);$('p-name').textContent=nm(n);show('r-pick');drawPicker()}
+function drawPicker(){
+ document.querySelectorAll('.pg button').forEach(b=>{const s=+b.dataset.s;b.disabled=!!takenBy(s);b.classList.toggle('on',s===sel&&!b.disabled)});
+ if(takenBy(sel))sel=0;$('b-ok').disabled=!sel;$('qn').textContent=q.length?q.length+' waiting in line':''}
+function finish(){cur=null;q.length?begin(q.shift()):show('r-idle')}
+$('b-ok').onclick=()=>{if(!cur||!sel)return;if(takenBy(sel)){sel=0;drawPicker();return toast('That seat was just taken — pick another')}
+ const n=cur,s=sel;put(n,{s:'seat',seat:s});if(hasDB())fetch(APPS_SCRIPT_URL+'?action=log&id='+pad3(n)+'&name='+encodeURIComponent(nm(n))+'&seat='+s,{mode:'no-cors'}).catch(()=>{});$('d-msg').textContent='Seat '+pad(s)+' confirmed — '+nm(n);show('r-done');setTimeout(finish,3500)};
+$('b-cancel').onclick=()=>{if(cur&&st[cur]&&st[cur].s==='in')put(cur,null);finish()};
+// ---- phone scanner tab (#scanner): reads QR and sends it to the registration tab ----
+let psFace='environment',lastSent={c:'',t:0};
+function showAck(o){const e=$('sc-status');e.textContent=o.msg;e.style.color=/^✖/.test(o.msg)?'#ff8c8c':'#7be0a8'}
+function phoneScan(txt){const c=(txt||'').trim();if(!/^(?:SAGIP-)?\d{1,3}$/.test(c))return;const now=Date.now();if(lastSent.c===c&&now-lastSent.t<3000)return;lastSent={c,t:now};beep();
+ mc.publish(SCAN,JSON.stringify({code:c,ts:now}),{qos:1});$('sc-status').style.color='#fff';$('sc-status').textContent='SENT: '+c+' …'}
+async function startScanner(){
+ try{ac=ac||new AudioContext()}catch(e){}
+ if(sc){try{await sc.stop()}catch(e){}}
+ const cfg={fps:20,qrbox:{width:250,height:250},videoConstraints:{width:{ideal:640},height:{ideal:480}}};
+ sc=new Html5Qrcode('rd',{verbose:false});
+ try{await sc.start({facingMode:psFace},cfg,phoneScan,()=>{});$('sc-start').hidden=true;$('sc-live').hidden=false}
+ catch(e){if(psFace==='environment'){psFace='user';return startScanner()}$('sc-msg').textContent='Camera blocked. Allow camera permission (needs HTTPS), then try again.'}}
+$('b-sc').onclick=startScanner;
+$('b-flip').onclick=()=>{psFace=psFace==='environment'?'user':'environment';startScanner()};
+const setNB=v=>{document.body.classList.toggle('nb',v);try{localStorage.setItem('sagipNB',v?'1':'')}catch(e){}};
+try{setNB(!!localStorage.getItem('sagipNB'))}catch(e){}
+$('tg').onclick=()=>setNB(false);$('tg2').onclick=()=>setNB(true);
+addEventListener('keydown',e=>{if(e.key.toLowerCase()==='h'&&!e.ctrlKey&&!e.metaKey)setNB(!document.body.classList.contains('nb'))});
+addEventListener('keydown',e=>{if(e.key.toLowerCase()==='m'&&!e.ctrlKey&&$('register').classList.contains('on')){const v=prompt('Manual entry — student number (e.g. 1 for 001)');if(v)onScan(pad3(+v))}});
+</script></body></html>
