@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ROBOTICS IGNITE 2026</title>
+<style>
+:root{--bg1:#050b1d;--bg2:#0c1d47;--ac:#ff7a1a;--ac2:#ffa24d;--cy:#4fd1ff;--mut:#9fb3d9;--f:clamp(24px,min(3vw,6.4vh),52px)}
+*{box-sizing:border-box;margin:0;padding:0}[hidden]{display:none!important}
+body{font-family:'Segoe UI',Poppins,Arial,sans-serif;height:100vh;overflow:hidden;color:#eaf1ff;display:flex;background:radial-gradient(1200px 700px at 75% -10%,#173a85,var(--bg1) 62%)}
+aside{width:240px;background:linear-gradient(#08122e,#050b1d);border-right:1px solid #4fd1ff44;padding:20px 18px;display:flex;flex-direction:column;gap:6px;flex:none}
+.logo{font-size:10px;letter-spacing:3px;color:var(--cy)}.ttl{font-size:25px;font-weight:800;letter-spacing:2px;line-height:1.05;margin:4px 0}.ttl span{color:var(--ac)}.sub{font-size:10px;color:var(--mut);letter-spacing:2px;margin-bottom:16px;border-bottom:2px solid var(--ac);padding-bottom:12px}
+aside a{color:#cfdcff;text-decoration:none;padding:11px 12px;border-radius:8px;font-size:12px;letter-spacing:1.5px;font-weight:600}
+aside a.on{background:linear-gradient(90deg,var(--ac),#e0600a);color:#fff}aside a:hover{background:#4fd1ff22}
+.stat{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px}.stat div{background:#ffffff0f;border-radius:8px;padding:10px;text-align:center}.stat b{display:block;font-size:24px;color:var(--ac2)}.stat span{font-size:9px;letter-spacing:1.5px;color:var(--mut)}
+#clock{font:700 20px 'Courier New',monospace;text-align:center;margin-top:10px}#dot{font-size:10px;text-align:center;letter-spacing:1px;color:#ff8c8c}#dot.ok{color:#6dffb0}.dbs{font-size:10px;text-align:center;letter-spacing:1px;color:var(--mut);margin-top:4px}
+#rst{margin-top:8px;background:none;border:1px solid #ffffff33;color:#ffffff88;font-size:9px;letter-spacing:1px;padding:6px;border-radius:6px;cursor:pointer}
+body.sc aside,body.nb aside{display:none}#tg{display:none;position:fixed;top:12px;left:12px;z-index:30;padding:9px 14px;border-radius:8px;border:1px solid var(--cy);background:#050b1dee;color:var(--cy);font-size:12px;font-weight:700;letter-spacing:1.5px;cursor:pointer}body.nb #tg{display:block}body.sc #tg{display:none!important}
+#tg2{background:none;border:1px solid #ffffff33;color:#cfdcff;font-size:10px;letter-spacing:2px;padding:8px;border-radius:6px;cursor:pointer;margin-bottom:10px}#tg2:hover{background:#ffffff14}
+main{flex:1;min-width:0;position:relative}section{position:absolute;inset:0;padding:18px 26px;display:none;flex-direction:column;overflow:auto}section.on{display:flex}
+h1{font-size:12px;letter-spacing:4px;color:var(--cy);font-weight:600}h2{font-size:26px;font-weight:800;margin:2px 0 8px}
+.face{width:100%;height:100%;border-radius:50%;overflow:hidden;background:linear-gradient(#1c3a82,#0d1f4a);border:2px solid #7f93c9}.face svg{width:100%;height:100%;display:block}.face.M{border-color:var(--cy)}.face.F{border-color:#ff8fc8}
+.ctr{margin:auto;text-align:center;max-width:900px;width:100%}.card{background:#ffffff12;border:1px solid #4fd1ff44;border-radius:18px;padding:26px;backdrop-filter:blur(6px)}
+.pulse{width:100px;height:100px;margin:0 auto 16px;border-radius:50%;background:var(--ac);display:grid;place-items:center;font-size:44px;animation:pl 2s infinite}
+@keyframes pl{0%{box-shadow:0 0 0 0 #ff7a1a99}100%{box-shadow:0 0 0 36px #ff7a1a00}}
+.big{font-size:32px;font-weight:800}.mut{color:var(--mut);margin-top:6px;font-size:15px}
+.btn{background:linear-gradient(90deg,var(--ac),#e0600a);border:0;color:#fff;font-weight:700;letter-spacing:2px;padding:14px 32px;border-radius:12px;font-size:14px;cursor:pointer;margin-top:16px}.btn:disabled{opacity:.35;cursor:not-allowed}.btn.alt{background:none;border:1px solid #ffffff44;font-size:11px;padding:9px 18px}
+.okrow{display:flex;align-items:center;gap:20px;justify-content:center;margin-bottom:12px;text-align:left}.okrow .pf{width:110px;height:110px;flex:none}.tick{color:#6dffb0;font-size:13px;letter-spacing:3px;font-weight:700}
+#gwrap input{margin-top:10px;width:320px;max-width:90%;padding:12px 16px;font-size:18px;border-radius:10px;border:2px solid var(--cy);background:#050b1d;color:#fff;text-align:center}
+#pk-l{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:center;margin-top:12px}#pk-g{display:flex;justify-content:center;margin-top:12px}
+.pk h3,#pk-l h3,#pk-g h3{font-size:10px;letter-spacing:3px;color:var(--cy);margin-bottom:6px}.pg{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;max-width:300px}
+.pg button{width:42px;height:42px;border-radius:10px;border:1.5px solid var(--cy);background:#ffffff10;color:#fff;font-size:16px;font-weight:700;cursor:pointer;transition:.15s}.pg button:hover:not(:disabled){background:#4fd1ff44}.pg button.on{background:var(--ac);border-color:var(--ac);transform:scale(1.12);box-shadow:0 0 16px var(--ac)}.pg button:disabled{opacity:.22;cursor:not-allowed;border-style:dashed}
+#rd{width:100%;max-width:420px;margin:0 auto;overflow:hidden}#rd video{width:100%!important;transform:scale(.5);transform-origin:center}#sc-status{margin:12px 0;font-size:12px;min-height:16px}.bs{font-size:10px;letter-spacing:2px;color:var(--cy);margin-top:3px}
+#toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:#fff;color:#0c1d47;padding:12px 24px;border-radius:30px;font-weight:700;box-shadow:0 8px 30px #0008;z-index:99}
+/* seating plan */
+.wrap{flex:1;min-height:0;display:flex;gap:16px}.floor{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}.frow{flex:1;min-height:0;display:flex;gap:14px}
+.tbl{min-width:0;display:flex;flex-direction:column;background:linear-gradient(#c58f55,#a87440);border:2px solid #3a2a18;border-radius:12px;padding:4px 6px 6px}.tbl.guest{background:linear-gradient(#f4f6fb,#cfd6e6);border-color:#8a96b3}
+.tl{font-size:clamp(8px,.75vw,11px);font-weight:800;letter-spacing:2px;color:#2b1c0c;text-align:center;margin-bottom:3px;white-space:nowrap;overflow:hidden}.tl i{font-style:normal;font-weight:600;opacity:.7}.guest .tl{color:#1c2a4d}
+.seats{flex:1;min-height:0;display:flex;gap:4px}.seat{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:#050b1dcc;border:1.5px dashed #4fd1ff55;border-radius:9px;padding:3px 2px;transition:.3s}.seat.t{background:#0c1d47;border:1.5px solid var(--ac)}
+.seat b{font-size:clamp(9px,.9vw,13px);color:var(--ac2)}.slot{width:var(--f);height:var(--f);flex:none;border-radius:50%;border:2px dashed #4fd1ff44}.seat.t .slot{border:0}
+.seat small{font-size:clamp(7px,.68vw,11px);line-height:1.15;color:#ffffff66;font-weight:600;text-align:center;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;width:100%;word-break:break-word}.seat.t small{color:#fff}
+.tray{width:210px;flex:none;background:#ffffff0d;border:1px solid #4fd1ff33;border-radius:16px;padding:12px;overflow:auto}.tray h3{font-size:10px;letter-spacing:3px;color:var(--cy);text-align:center;margin-bottom:10px}
+#big{text-align:center;margin-bottom:12px}.bigf{width:clamp(100px,18vh,160px);height:clamp(100px,18vh,160px);margin:0 auto 8px;animation:pop .5s}.bn{font-size:17px;font-weight:800}.bg{font-size:11px;color:var(--mut);margin-top:2px}
+.chip{display:flex;align-items:center;gap:8px;margin-bottom:6px;padding:5px;background:#ff7a1a2a;border-radius:40px;animation:pop .5s}.chip .cf{width:34px;height:34px;flex:none}.chip span{font-size:11px;font-weight:600;line-height:1.1}
+@keyframes pop{from{transform:scale(.3);opacity:0}}.fly{position:fixed;z-index:20;transform-origin:0 0;pointer-events:none}
+</style></head><body>
+<button id="tg" title="Show menu (H)">☰ MENU</button>
+<aside>
+ <button id="tg2" title="Hide menu (H)">◀ HIDE MENU</button>
+ <div class="logo">● ORGANIZED BY IRYS</div><div class="ttl">ROBOTICS<br><span>IGNITE</span> 2026</div><div class="sub">REGISTRATION SYSTEM</div>
+ <a href="#register" id="n-register">REGISTRATION</a><a href="#seating" id="n-seating">SEATING PLAN</a><a href="#scanner" id="n-scanner">SCANNER (PHONE)</a>
+ <div class="stat"><div><b id="c-in">0</b><span>CHECKED IN</span></div><div><b id="c-seat">0</b><span>SEATED / 40</span></div></div>
+ <div id="clock"></div><div id="dot">● CONNECTING…</div><div id="dbs" class="dbs">● DATABASE…</div><button id="rst">RESET ALL</button>
+</aside>
+<main>
+<section id="register">
+ <h1>WELCOME TO</h1><h2>ROBOTICS IGNITE 2026</h2>
+ <div class="ctr" id="r-idle"><div class="card"><div class="pulse">▣</div><div class="big">Please present your QR code</div><div class="mut">Scan your pass at the scanner station</div></div></div>
+ <div class="ctr" id="r-pick" hidden><div class="card">
+  <div class="okrow"><div class="pf" id="p-face"></div><div><div class="tick">✔ SUCCESSFULLY REGISTERED</div><div class="big" id="p-name"></div><div class="mut" id="p-sub"></div></div></div>
+  <div id="gwrap" hidden><div class="mut" style="margin:0">Please enter your last name</div><input id="g-name" maxlength="24" placeholder="Last name" autocomplete="off"></div>
+  <div class="mut" style="margin-top:12px">Choose a seat number</div>
+  <div id="pk-l"></div><div id="pk-g" hidden></div>
+  <button class="btn" id="b-ok" disabled>CONFIRM SEAT</button> <button class="btn alt" id="b-cancel">CANCEL</button><div class="mut" id="qn"></div></div></div>
+ <div class="ctr" id="r-done" hidden><div class="card"><div class="pulse">✔</div><div class="big" id="d-msg"></div><div class="mut">Please proceed to your seat. Thank you!</div></div></div>
+</section>
+<section id="seating">
+ <h1>ROBOTICS IGNITE 2026 · IRYS</h1><h2>Seating Plan</h2>
+ <div class="wrap"><div class="floor" id="floor"></div><div class="tray"><h3>ARRIVALS</h3><div id="big"></div><div id="tray"></div></div></div>
+</section>
+<section id="scanner">
+ <h1>ROBOTICS IGNITE 2026</h1><h2>QR Scanner</h2>
+ <div class="ctr"><div class="card">
+  <div id="sc-start"><div class="pulse">▶</div><div class="mut" id="sc-msg">Tap to start the camera</div><button class="btn" id="b-sc">START SCANNER</button></div>
+  <div id="sc-live" hidden><div id="rd"></div><div class="bs" id="sc-status">READY — POINT AT A QR CODE</div><button class="btn alt" id="b-flip">🔄 FLIP CAMERA</button></div>
+  <div class="bs" id="sc-conn" style="margin-top:14px">● CONNECTING…</div>
+ </div></div>
+</section>
+</main>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="https://unpkg.com/mqtt@5.3.4/dist/mqtt.min.js"></script>
+<script>
+// ===== Apps Script Web App URL (Google Sheet: "IGNITE Students") =====
+const APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbwRgnBhCDU5565t2w8l6v1cvT-vxxZTeNp26QmgtC4_e2sXSAnMwTTTcESyeqlhfaQg/exec";
+const K='robotics-ignite-26-irys-q7m2x/',ROOT=K+'s/',SCAN=K+'scan',ACK=K+'ack',BROKER='wss://broker.hivemq.com:8884/mqtt';
+const $=id=>document.getElementById(id),pad=n=>String(n).padStart(2,'0'),pad3=n=>String(n).padStart(3,'0'),range=(a,b)=>Array.from({length:b-a+1},(_,i)=>String(a+i));
+const TABLES=[['TABLE 1',1,5],['TABLE 2',6,10],['TABLE 3',11,15],['TABLE 4',16,20],['TABLE 5',21,24],['TABLE 6',25,28],['TABLE 7',29,30]];
+const GS=range(1,10).map(n=>'G'+n),DB={},st={};
+let latest=null,cur=null,q=[],sel='',lastScan={id:'',t:0},sc=null,ac=null;
+const isG=id=>id[0]==='G';
+const nm=id=>isG(id)?((st[id]&&st[id].name)||'Guest '+(+id.slice(1))):((DB[id]&&DB[id].name)||'Learner '+id);
+const sub=id=>isG(id)?'GUEST #'+(+id.slice(1)):((DB[id]&&DB[id].grade)||'');
+const SK='<circle cx="50" cy="40" r="17" fill="#dbe6ff"/><path d="M14 104c0-24 16-36 36-36s36 12 36 36z" fill="#dbe6ff"/>';
+const AV={N:`<svg viewBox="0 0 100 100">${SK}</svg>`,
+ M:`<svg viewBox="0 0 100 100">${SK}<path d="M32 38c0-16 8-23 18-23s18 7 18 23c-5-8-10-11-18-11s-13 3-18 11z" fill="#4a5f9a"/></svg>`,
+ F:`<svg viewBox="0 0 100 100"><path d="M27 44c0-21 9-32 23-32s23 11 23 32v30c0 6-7 8-9 3V52H36v25c-2 5-9 3-9-3z" fill="#8da2d8"/>${SK}<path d="M33 38c0-13 7-20 17-20s17 7 17 20c-6-5-11-8-17-8s-11 3-17 8z" fill="#8da2d8"/></svg>`};
+const face=id=>{const g=isG(id)?'N':((DB[id]&&DB[id].gender)||'N');return `<div class="face ${g=='M'||g=='F'?g:'N'}">${AV[g=='M'||g=='F'?g:'N']}</div>`};
+// ---- routing / clock / menu ----
+function route(){const h=location.hash.slice(1),v=['seating','scanner'].includes(h)?h:'register';['register','seating','scanner'].forEach(x=>{$(x).classList.toggle('on',x===v);$('n-'+x).classList.toggle('on',x===v)});document.body.classList.toggle('sc',v==='scanner')}
+addEventListener('hashchange',route);route();
+setInterval(()=>$('clock').textContent=new Date().toLocaleTimeString('en-GB'),1000);
+const setNB=v=>{document.body.classList.toggle('nb',v);try{localStorage.setItem('igniteNB',v?'1':'')}catch(e){}};
+try{setNB(!!localStorage.getItem('igniteNB'))}catch(e){}
+$('tg').onclick=()=>setNB(false);$('tg2').onclick=()=>setNB(true);
+// ---- build floor plan + seat pickers ----
+const seatHTML=k=>`<div class="seat" id="seat-${k}"><b>${k.replace('G','')}</b><div class="slot"></div><small>Available</small></div>`;
+const tblHTML=(label,sub,ks,cls)=>`<div class="tbl ${cls||''}" style="flex:${ks.length} 1 0"><div class="tl">${label} <i>${sub}</i></div><div class="seats">${ks.map(seatHTML).join('')}</div></div>`;
+$('floor').innerHTML=[[0,1],[2,3],[4,5,6]].map(r=>`<div class="frow">${r.map(i=>{const[t,a,b]=TABLES[i];return tblHTML(t,'#'+a+'–'+b,range(a,b))}).join('')}</div>`).join('')+`<div class="frow">${tblHTML('GUEST TABLE','Guest seats #1–#10',GS,'guest')}</div>`;
+$('pk-l').innerHTML=TABLES.map(([t,a,b])=>`<div><h3>${t}</h3><div class="pg">${range(a,b).map(k=>`<button data-s="${k}">${k}</button>`).join('')}</div></div>`).join('');
+$('pk-g').innerHTML=`<div><h3>GUEST TABLE</h3><div class="pg">${GS.map(k=>`<button data-s="${k}">${k.slice(1)}</button>`).join('')}</div></div>`;
+document.querySelectorAll('.pg button').forEach(b=>b.onclick=()=>{sel=b.dataset.s;drawPicker()});
+$('g-name').oninput=()=>drawPicker();
+const takenBy=s=>Object.keys(st).find(k=>st[k].s==='seat'&&st[k].seat===s);
+// ---- realtime (MQTT, retained state per person) ----
+const mc=mqtt.connect(BROKER,{clientId:'ig-'+Math.random().toString(36).slice(2,9),reconnectPeriod:2000});
+mc.on('connect',()=>{$('dot').textContent='● LIVE';$('dot').className='ok';$('sc-conn').textContent='● CONNECTED';mc.subscribe([ROOT+'#',SCAN,ACK],{qos:1})});
+mc.on('close',()=>{$('dot').textContent='● OFFLINE';$('dot').className='';$('sc-conn').textContent='● OFFLINE'});
+mc.on('message',(t,p)=>{const s=p.toString();
+ if(t===SCAN){if($('register').classList.contains('on'))try{onScan(JSON.parse(s).code)}catch(e){}return}
+ if(t===ACK){try{showAck(JSON.parse(s))}catch(e){}return}
+ const id=t.slice(ROOT.length);if(!id)return;const old=st[id];try{if(s)st[id]=JSON.parse(s);else delete st[id]}catch(e){return}
+ seatingUpdate(id,old);drawPicker();cnt()});
+const put=(id,o)=>mc.publish(ROOT+id,o?JSON.stringify(o):'',{qos:1,retain:true});
+const ack=(id,msg)=>mc.publish(ACK,JSON.stringify({id,msg}));
+function cnt(){const v=Object.values(st);$('c-in').textContent=v.length;$('c-seat').textContent=v.filter(o=>o.s==='seat').length}
+$('rst').onclick=()=>{if(confirm('Reset ALL registrations and seats?')){for(let i=1;i<=30;i++)put(pad3(i),null);for(let i=1;i<=10;i++)put('G'+pad(i),null)}};
+// ---- seating plan ----
+function drawBig(){$('big').innerHTML=latest?`<div class="bigf">${face(latest)}</div><div class="bn">${nm(latest)}</div><div class="bg">${sub(latest)}</div><div class="bs">WELCOME · CHOOSING A SEAT…</div>`:''}
+function clearSeat(e){e.classList.remove('t');e.querySelector('.slot').innerHTML='';e.querySelector('small').textContent='Available'}
+function seatingUpdate(id,old){
+ const chip=$('chip'+id),c=st[id];let from=null;
+ if(old&&old.s==='seat'&&(!c||c.seat!==old.seat)){const e=$('seat-'+old.seat);if(e)clearSeat(e)}
+ if(c&&c.s==='in'){if(!chip){$('tray').insertAdjacentHTML('beforeend',`<div class="chip" id="chip${id}"><div class="cf">${face(id)}</div><span>${nm(id)}</span></div>`);latest=id;drawBig()}}
+ else if(chip){const bf=document.querySelector('#big .bigf');from=(latest===id&&bf?bf:chip.querySelector('.cf')).getBoundingClientRect();chip.remove();if(latest===id){const cs=document.querySelectorAll('.chip');latest=cs.length?cs[cs.length-1].id.slice(4):null}drawBig()}
+ if(c&&c.s==='seat'){
+  const s=$('seat-'+c.seat);if(!s)return;const sl=s.querySelector('.slot');s.classList.add('t');sl.innerHTML=face(id);s.querySelector('small').textContent=nm(id);
+  if(from&&from.width){const to=sl.getBoundingClientRect(),f=document.createElement('div');f.className='fly';f.innerHTML=face(id);
+   Object.assign(f.style,{left:from.left+'px',top:from.top+'px',width:from.width+'px',height:from.height+'px'});sl.style.opacity=0;document.body.append(f);
+   f.animate([{transform:'none'},{transform:`translate(${to.left-from.left}px,${to.top-from.top}px) scale(${to.width/from.width})`}],{duration:900,easing:'cubic-bezier(.3,.7,.2,1)',fill:'forwards'}).onfinish=()=>{f.remove();sl.style.opacity=1}}
+ }
+}
+function refreshAll(){$('tray').innerHTML='';latest=null;document.querySelectorAll('.seat').forEach(clearSeat);Object.keys(st).forEach(k=>seatingUpdate(k,undefined));drawBig()}
+// ---- database (Google Sheet via Apps Script) ----
+const hasDB=()=>APPS_SCRIPT_URL.startsWith('http');
+async function loadDB(){
+ if(!hasDB()){$('dbs').textContent='● DEMO MODE (no database)';return}
+ try{const r=await fetch(APPS_SCRIPT_URL+'?action=all');(await r.json()).forEach(x=>{DB[pad3(+x.id)]=x});
+  $('dbs').textContent='● DATABASE: '+Object.keys(DB).length+' learners';refreshAll()}
+ catch(e){$('dbs').textContent='● DATABASE ERROR';setTimeout(loadDB,4000)}}
+if(location.hash!=='#scanner')loadDB();
+// ---- registration flow ----
+const panels=['r-idle','r-pick','r-done'],show=x=>panels.forEach(p=>$(p).hidden=p!==x);
+function toast(m){const t=document.createElement('div');t.id='toast';t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),3000)}
+function beep(){try{ac=ac||new AudioContext();[[1200,0],[1600,.15]].forEach(([f,d])=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f;o.connect(g);g.connect(ac.destination);g.gain.setValueAtTime(.3,ac.currentTime+d);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+d+.13);o.start(ac.currentTime+d);o.stop(ac.currentTime+d+.15)})}catch(e){}}
+function parseCode(t){const c=(t||'').trim().toUpperCase();let m=/^G(\d{1,2})$/.exec(c);if(m){const n=+m[1];return n>=1&&n<=10?'G'+pad(n):null}m=/^(\d{1,3})$/.exec(c);if(m){const n=+m[1];return n>=1&&n<=30?pad3(n):null}return null}
+function onScan(txt){const id=parseCode(txt),now=Date.now();if(!id||(lastScan.id===id&&now-lastScan.t<4000))return;lastScan={id,t:now};
+ if(hasDB()&&!isG(id)&&!DB[id]){ack(id,'✖ '+id+' not found in database');return toast('QR not found in the database')}
+ beep();intake(id)}
+function intake(id){
+ if(st[id]&&st[id].s==='seat'){const m=nm(id)+' is already registered — '+(isG(id)?'Guest seat ':'Seat ')+st[id].seat.replace('G','');ack(id,'ℹ '+m);return toast(m)}
+ if(cur===id||q.includes(id))return;
+ if(cur){q.push(id);ack(id,'⏳ '+nm(id)+' is in line');return drawPicker()}
+ begin(id)}
+function begin(id){ack(id,'✔ '+nm(id)+' registered — choose a seat on the screen');cur=id;sel='';$('g-name').value='';if(!st[id])put(id,{s:'in'});
+ $('p-face').innerHTML=face(id);$('p-name').textContent=nm(id);$('p-sub').textContent=sub(id);$('gwrap').hidden=!isG(id);show('r-pick');drawPicker();if(isG(id))setTimeout(()=>$('g-name').focus(),60)}
+function drawPicker(){
+ const g=!!cur&&isG(cur);$('pk-l').hidden=g;$('pk-g').hidden=!g;
+ if(sel&&takenBy(sel))sel='';
+ document.querySelectorAll('.pg button').forEach(b=>{const s=b.dataset.s;b.disabled=!!takenBy(s);b.classList.toggle('on',s===sel&&!b.disabled)});
+ $('b-ok').disabled=!sel||(g&&!$('g-name').value.trim());$('qn').textContent=q.length?q.length+' waiting in line':''}
+function finish(){cur=null;q.length?begin(q.shift()):show('r-idle')}
+$('b-ok').onclick=()=>{if(!cur||!sel)return;const id=cur,s=sel,g=isG(id),name=g?$('g-name').value.trim().slice(0,24):'';if(g&&!name)return;
+ if(takenBy(s)){sel='';drawPicker();return toast('That seat was just taken — pick another')}
+ put(id,g?{s:'seat',seat:s,name}:{s:'seat',seat:s});
+ const label=(g?'Guest seat ':'Seat ')+s.replace('G','');
+ if(hasDB())fetch(APPS_SCRIPT_URL+'?action=log&id='+id+'&name='+encodeURIComponent(g?name+' (Guest '+(+id.slice(1))+')':nm(id))+'&seat='+encodeURIComponent(label),{mode:'no-cors'}).catch(()=>{});
+ $('d-msg').textContent=label+' confirmed — '+(g?name:nm(id));show('r-done');setTimeout(finish,3500)};
+$('b-cancel').onclick=()=>{if(cur&&st[cur]&&st[cur].s==='in')put(cur,null);finish()};
+// ---- phone scanner tab (#scanner) ----
+let psFace='environment',lastSent={c:'',t:0};
+function showAck(o){const e=$('sc-status');e.textContent=o.msg;e.style.color=/^✖/.test(o.msg)?'#ff8c8c':'#6dffb0'}
+function phoneScan(txt){const c=(txt||'').trim().toUpperCase();if(!/^(?:G\d{1,2}|\d{1,3})$/.test(c))return;const now=Date.now();if(lastSent.c===c&&now-lastSent.t<3000)return;lastSent={c,t:now};beep();
+ mc.publish(SCAN,JSON.stringify({code:c,ts:now}),{qos:1});$('sc-status').style.color='#fff';$('sc-status').textContent='SENT: '+c+' …'}
+async function startScanner(){
+ try{ac=ac||new AudioContext()}catch(e){}
+ if(sc){try{await sc.stop()}catch(e){}}
+ const cfg={fps:20,qrbox:{width:250,height:250},videoConstraints:{width:{ideal:640},height:{ideal:480}}};
+ sc=new Html5Qrcode('rd',{verbose:false});
+ try{await sc.start({facingMode:psFace},cfg,phoneScan,()=>{});$('sc-start').hidden=true;$('sc-live').hidden=false}
+ catch(e){if(psFace==='environment'){psFace='user';return startScanner()}$('sc-msg').textContent='Camera blocked. Allow camera permission (needs HTTPS), then try again.'}}
+$('b-sc').onclick=startScanner;
+$('b-flip').onclick=()=>{psFace=psFace==='environment'?'user':'environment';startScanner()};
+addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(e.target.tagName==='INPUT'||e.ctrlKey||e.metaKey)return;
+ if(k==='h')setNB(!document.body.classList.contains('nb'));
+ else if(k==='m'&&$('register').classList.contains('on')){const v=prompt('Manual entry — learner number (e.g. 1) or guest (e.g. G1)');if(v)onScan(v)}});
+</script></body></html>
